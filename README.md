@@ -116,7 +116,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
 | NC              | INT             | Interrupt |
 
 > ***Note***
-> The APDS9930 library shares Wire pin usage with openHASP device touch controller connections. On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is not connnected nor used in this Custom Code
+> The APDS9930 library shares the global `Wire` object with the openHASP device touch controller using primary I²C bus. This restricts the APDS9930 sensors SDA/SCL GPIO pins to be identical with the openHASP device defined touch controller GPIO pins ! On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is not connnected nor used in this Custom Code
 
 
 ### Config keywords:
