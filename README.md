@@ -9,29 +9,41 @@ Initial Custom Code release
 
 # openHASP Custom Code for APDS9930 proximity sensor
 
-
 - Custom code for handling `idle_off` command internally in openHASP code upon proximity detection
 - Setting of custom brightness level (low or high) depending on APDS9930 sensors ambient light lux value. This will make it possible to turn on the display upon proximity detection at night at low brightness level
 - Proximity detection, value and ambient light lux level are written to log and published via MQTT custom topic. Typical time consumption for entire detection, ambient light lux reading, issuing commands / MQTT messages and log writes are some 115 milliseconds
 
-### Example:
+### Custom MQTT message example:
 
 ```yaml
 topic: hasp/sunton_02/state/custom
 payload: {"proximity":620,"lux":5}
 ```
 
-- Proximity detection throttle flag is set upon detection and is reset in the `void custom_every_5seconds()` loop. This effectively reduces time consumption in code for proximity detection to max. once every five seconds
+### Log example with proximity detection on openHASP plate from `idle_long` state:
+```yaml
+[19:53:46.848][61428/73772 16][22028/24228 10] MSGR: idle=off
+[19:53:46.863][61428/70340 12][22028/24228 10] MQTT PUB: idle => off
+[19:53:46.878][59380/68408 13][22028/24228 10] CUST: Proximity detected. Level: 817
+[19:53:46.894][57332/66468 13][22028/24228 10] CUST: Ambient light lux: 20
+[19:53:46.909][55284/66132 16][22028/24228 10] MSGR: backlight={'state':1,'brightness':191}
+[19:53:46.924][61428/72176 14][22028/24228 10] HASP: First touch Disabled
+[19:53:46.942][59380/68648 13][22028/24228 10] MQTT PUB: backlight => {"state":"on","brightness":191}
+[19:53:46.959][59380/70592 15][22028/24228 10] MQTT PUB: custom => {"proximity":817,"lux":20}
+[19:53:48.683][61428/73772 16][22028/24228 10] CUST: Clear proximity throttle flag
+```
+
+- Proximity detection throttle flag is set upon detection and is reset in the `void custom_every_5seconds()` loop. This effectively reduces time consumption in code for continuous proximity detection to max. once every five seconds
 - Ambient light lux value is read every 60 seconds and written to log. Sensor value is also added to- and exposed with openHASPs generic `sensor` MQTT message (`TelePeriod` settings define the interval)
 
-### Example:
+### openHASP sensors MQTT publish example:
 
 ```yaml
 topic: hasp/sunton_02/state/sensors
 payload: {"time":"2023-04-28T21:23:10","uptimeSec":2700,"uptime":"0T00:45:00","lux":5}
 ```
 
-`brightness_low`, `brightness_high` and `ambient_light_threshold` variables can all be set via custom MQTT command and hence controlled dynamically at runtime
+#### *`brightness_low`, `brightness_high` and `ambient_light_threshold` variables can all be set via custom MQTT command and hence controlled dynamically at runtime 🚀🥳*
 
 ### Usage scheme upon proximity detection:
 
@@ -93,7 +105,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
             )
 ```
 
-### Example pin connection between APDS9930 module board and a 7" Sunton 8048S070C device.
+### Example pin connection between APDS9930 module board and a 7" Sunton 8048S070C device
 
 | openHASP device | APDS-9930 Board | Function  |
 | --------------- | --------------- | --------- |
