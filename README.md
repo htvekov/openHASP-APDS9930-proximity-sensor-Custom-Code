@@ -7,7 +7,7 @@
 - **1.00** (2023-04-29)
 Initial Custom Code release
 
-# Custom openHASP code for APDS9930 proximity sensor
+# openHASP Custom Code for APDS9930 proximity sensor
 
 
 - Custom code for handling `idle_off` command internally in openHASP code upon proximity detection
