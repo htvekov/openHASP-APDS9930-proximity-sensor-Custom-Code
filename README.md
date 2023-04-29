@@ -7,20 +7,6 @@
 - **1.00** (2023-04-29)
 Initial Custom Code release
 
-### Example pin connection between APDS9930 module board and a 7" Sunton 8048S070C device.
-
-| openHASP device | APDS-9930 Board | Function  |
-| --------------- | --------------- | --------- |
-| 3.3V            | VCC             | Power     |
-| 3.3V            | VL              | Power     |
-| GND             | GND             | Ground    |
-| GPIO19          | SDA             | I²C Data  |
-| GPIO20          | SCL             | I²C Clock |
-| NC              | INT             | Interrupt |
-
-> ***Note***
-> The APDS9930 library shares Wire pin usage with openHASP device touch controller connections. On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is not connnected nor used in this Custom Code
-
 # Custom openHASP code for APDS9930 proximity sensor
 
 
