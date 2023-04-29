@@ -19,7 +19,7 @@ topic: hasp/sunton_02/state/custom
 payload: {"proximity":620,"lux":5}
 ```
 
-### Log example with proximity detection on openHASP plate from `idle_long` state:
+### Log example - Proximity detection on openHASP plate from `idle_long` state:
 ```yaml
 [19:53:46.848][61428/73772 16][22028/24228 10] MSGR: idle=off
 [19:53:46.863][61428/70340 12][22028/24228 10] MQTT PUB: idle => off
@@ -50,7 +50,7 @@ payload: {"time":"2023-04-28T21:23:10","uptimeSec":2700,"uptime":"0T00:45:00","l
 | -------------------------------------------------- | --------------------------------------------------- |
 | `brightness_low` value used for brightness setting | `brightness_high` value used for brightness setting |
  
-### Example setting `brightness_low` via HA Developer tools:
+### Example - Setting `brightness_low` via HA Developer tools:
 ```yaml
 service: mqtt.publish
 data:
@@ -104,7 +104,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
             )
 ```
 
-### Example pin connection between APDS9930 module board and a 7" Sunton 8048S070C device
+### Pin connection example between APDS9930 module board and a 7" Sunton 8048S070C device
 
 | openHASP device | APDS-9930 Board | Function  |
 | --------------- | --------------- | --------- |
