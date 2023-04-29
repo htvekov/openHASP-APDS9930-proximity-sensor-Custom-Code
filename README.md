@@ -7,15 +7,11 @@
 - **1.00** (2023-04-29)
 Initial Custom Code release
 
-### Description:
+# Custom openHASP code for APDS9930 proximity sensor
 
-********************************************************
-** Custom openHASP code for APDS9930 proximity sensor **
-********************************************************
 
-Custom code for handling idle_off command internally in openHASP code upon proximity detection
-Setting of custom brightness level (low or high) depending on APDS9930 sensors ambient light lux value
-This will make it possible to turn on the display upon proximity detection at night at low brightness level
+- Custom code for handling idle_off command internally in openHASP code upon proximity detection
+- Setting of custom brightness level (low or high) depending on APDS9930 sensors ambient light lux value. This will make it possible to turn on the display upon proximity detection at night at low brightness level
    
 Proximity detection, value and ambient light lux level are written to log and published via MQTT custom topic
 Example:
@@ -44,9 +40,7 @@ When proximity is registered above threshold value, an idle_off command is insta
 This is followed by a backlight={'state':1,'brightness':xx} command, where brightness value is set to either brightness_low or brightness_high depending on what
 ambient light lux level has been read upon proximity detection
 
-When using openHASP Home Assistant Custom Component, the idle_off command will also trigger a state and brightness commmand from the CC
-As the brightness level from CC is fixed, this will unfortunately instantly owerwrite any brightness setting done in custom code
-So until this gets fixed in the CC, a hack is needed in openHASP Custom Components lights.py file in order to ignore actions on idle_off commands for specific openHASP devices
+When using openHASP Home Assistant Custom Component, the idle_off command will also trigger a state and brightness commmand from the CC. As the brightness level from CC is fixed, this will unfortunately instantly owerwrite any brightness setting done in custom code. So until this gets fixed in the CC, a hack is needed in openHASP Custom Components lights.py file in order to ignore actions on idle_off commands for specific openHASP devices
 
    async def async_listen_idleness(self):
         """Listen to messages on MQTT for HASP idleness."""
@@ -69,13 +63,21 @@ So until this gets fixed in the CC, a hack is needed in openHASP Custom Componen
                 return
             #
             # Skip IDLE_OFF commands for specific openHASP devices
-            # skip device = device MQTT nodename + " " + "backlight"
+            # skip device = device MQTT nodename
             #
-            skip_device ="sunton_02 backlight"     
-            if self.name == skip_device and message == HASP_IDLE_OFF:
+            skip_device ="sunton_02"     
+            if self.name == skip_device + " backlight" and message == HASP_IDLE_OFF:
                 return
             else:
                 new_state = {"state": backlight, "brightness": brightness}
+
+            _LOGGER.debug(
+                "Idle state for %s is %s - Dimming to %s; Backlight to %s",
+                self.name,
+                message,
+                brightness,
+                backlight,
+            )
 
 ### Keywords:
 
@@ -84,9 +86,7 @@ So until this gets fixed in the CC, a hack is needed in openHASP Custom Componen
 - Add git+https://github.com/depau/APDS9930.git to lib-deps in platformio.ini file
 - Copy my_custom.h and my_custom.ccp files to openhasp/src/custom folder
 - Revise platformio_override.ini and user_config_override.h files
-- Patch openHASP Custom Config lights.py file in Home Assistant
-
-#### ’To do’ list:
+- Patch openHASP Custom Config lights.py file in Home Assistant or copy file from this repo instead
 
 Suggestions, improvements, error reporting etc. are very welcome ! 🙂
 
