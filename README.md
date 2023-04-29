@@ -1,4 +1,3 @@
-﻿
 # openHASP APDS9930 proximity sensor - Custom Code documentation v1.00
 
 ![APDS9930 board module](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/apds9930.PNG) ![Sunton connnectors](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/sunton.PNG)
@@ -7,7 +6,7 @@
 - **1.00** (2023-04-29)
 Initial Custom Code release
 
-# openHASP Custom Code for APDS9930 proximity sensor
+# openHASP Custom Code for [APDS9930 proximity sensor](https://www.aliexpress.com/item/32846656029.html)
 
 - Custom code for handling `idle_off` command internally in openHASP code upon proximity detection
 - Setting of custom brightness level (low or high) depending on APDS9930 sensors ambient light lux value. This will make it possible to turn on the display upon proximity detection at night at low brightness level
