@@ -1,4 +1,4 @@
-# openHASP APDS9930 proximity sensor - Custom Code documentation v1.00
+# openHASP APDS9930 proximity sensor Custom Code documentation v1.00
 
 ![APDS9930 board module](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/apds9930.PNG) ![Sunton connnectors](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/sunton.PNG)
 
