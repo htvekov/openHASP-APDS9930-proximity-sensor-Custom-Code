@@ -1,7 +1,7 @@
 ﻿
 # openHASP APDS9930 proximity sensor - Custom Code documentation v1.00
 
-![APDS9930](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/apds9930.png)
+![APDS9930](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/apds9930.PNG)
 
 ### Revision:
 - **1.00** (2023-04-29)
