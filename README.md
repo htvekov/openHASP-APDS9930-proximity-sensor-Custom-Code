@@ -10,25 +10,27 @@ Initial Custom Code release
 # Custom openHASP code for APDS9930 proximity sensor
 
 
-- Custom code for handling idle_off command internally in openHASP code upon proximity detection
+- Custom code for handling `idle_off` command internally in openHASP code upon proximity detection
 - Setting of custom brightness level (low or high) depending on APDS9930 sensors ambient light lux value. This will make it possible to turn on the display upon proximity detection at night at low brightness level
    
 Proximity detection, value and ambient light lux level are written to log and published via MQTT custom topic
 Example:
-topic: hasp/sunton_02/state/custom
-payload: {"proximity":620,"lux":5}
+   
+   topic: hasp/sunton_02/state/custom
+   payload: {"proximity":620,"lux":5}
+
 Typical time consumption for entire detection, ambient light lux reading, commands issuing, MQTT messages and log writes are some 115 milliseconds.
 
 Proximity detection throttle flag is set upon detection and is reset in the void custom_every_5seconds() loop
 This effectively reduces code time consumption for proximity detection to max. once every five seconds
 
 Ambient light lux value is read every 60 seconds and written to log
-Sensor value is also added to- and exposed with openHASP 'standard' sensor MQTT message (TelePeriod settings interval)
+Sensor value is also added to- and exposed with openHASP 'standard' sensor MQTT message (`TelePeriod` settings interval)
 Example:
 topic: hasp/sunton_02/state/sensors
 payload: {"time":"2023-04-28T21:23:10","uptimeSec":2700,"uptime":"0T00:45:00","lux":5}
 
-brightness_low, brightness_high and ambient_light_threshold variables can all be set via custom MQTT command and hence controlled dynamically at runtime
+`brightness_low`, `brightness_high` and `ambient_light_threshold` variables can all be set via custom MQTT command and hence controlled dynamically at runtime
 Example - HA Developer tools:
 service: mqtt.publish
 data:
