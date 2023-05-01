@@ -12,7 +12,7 @@ Initial Custom Code release
 
 The APDS-9930 Digital Proximity and Ambient Light Sensor is a cheap, realiable and very small sensor perfectly suited for near display proximity detection on any openHASP device. The actual sensors measurements (appx. 4 x 2 mm) makes it very suitable to install behind the glass display edge on e.g. the [T3E](https://github.com/HASwitchPlate/openHASP/discussions/458) device or in the enclosure frame for e.g. Sunton devices. Opposite to typical PIR sensors, this sensor will only detect very close proximity within 100 mm. This makes the sensor a perfect candidate to instantly wake up an openHASP device before user actually touch the display
 
-[Data Sheet](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/APDS-9930-AVAGO.PDF) description:
+[Data Sheet](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/APDS-9930-AVAGO.pdf) description:
 - The APDS-9930 provides digital Ambient Light Sensing (ALS), IR LED and a complete proximity detection system in a single 8 pin package
 - The proximity function offers plug and play detection to 100 mm (without front glass) thus eliminating the need for factory calibration of the end equipment or sub-assembly
 - The proximity detection feature operates well from bright sunlight to dark rooms
