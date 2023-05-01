@@ -1,16 +1,29 @@
-# openHASP APDS9930 proximity sensor Custom Code documentation v1.00
+# openHASP APDS-9930 proximity sensor Custom Code documentation v1.01
 
-![APDS9930 board module](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/apds9930.PNG) ![Sunton connnectors](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/sunton.PNG)
+![APDS-9930 DIL package](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/APDS9930_DIL.PNG) ![APDS-9930 board module](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/apds9930.PNG) ![Sunton connnectors](https://github.com/htvekov/openHASP-APDS9930-proximity-sensor-Custom-Code/blob/main/sunton.PNG)
 
 ### Revision:
+- **1.01** (2023-05-01)
+Improved documentation
 - **1.00** (2023-04-29)
 Initial Custom Code release
 
-# openHASP Custom Code for [APDS9930 proximity sensor](https://www.aliexpress.com/item/32846656029.html)
+# APDS-9930 proximity sensor properties:
 
-- Custom code for handling `idle_off` command internally in openHASP code upon proximity detection
-- Setting of custom brightness level (low or high) depending on APDS9930 sensors ambient light lux value. This will make it possible to turn on the display upon proximity detection at night at low brightness level
-- Proximity detection, value and ambient light lux level are written to log and published via MQTT custom topic. Typical time consumption for entire detection, ambient light lux reading, issuing commands / MQTT messages and log writes are some 115 milliseconds
+The APDS-9930 Digital Proximity and Ambient Light Sensor is a cheap, realiable and very small sensor perfectly suited for near display proximity detection on any openHASP device. The actual sensors measurements (appx. 4 x 2 mm) makes it very suitable to install behind the glass display edge on e.g. the [T3E](https://github.com/HASwitchPlate/openHASP/discussions/458) device or in the enclosure frame for e.g. Sunton devices. Opposite to typical PIR sensors, this sensor will only detect very close proximity within 100 mm. This makes the sensor a perfect candidate to instantly wake up an openHASP device before user actually touch the display
+
+[Data Sheet](https://datasheetspdf.com/datasheet/APDS-9930.html) description:
+- The APDS-9930 provides digital Ambient Light Sensing (ALS), IR LED and a complete proximity detection system in a single 8 pin package
+- The proximity function offers plug and play detection to 100 mm (without front glass) thus eliminating the need for factory calibration of the end equipment or sub-assembly
+- The proximity detection feature operates well from bright sunlight to dark rooms
+- The wide dynamic range also allows for operation in short distance detection behind dark glass such as a cell phone.
+
+# openHASP Custom Code for [APDS-9930 proximity sensor](https://www.aliexpress.com/item/32846656029.html)
+
+- Custom code for issuing `idle_off` command locally in openHASP code upon proximity detection
+- Supports custom brightness level (low or high) depending on APDS-9930 sensors ambient light lux value. This feature will make it possible to wake up the openHASP device, upon proximity detection at night, at low brightness level
+- Custom brightness- and ambient light threshold levels are configurable at runtime via MQTT commands
+- All proximity detection events, distance value and ambient light lux level are written to log and published via MQTT custom topic. Typical time consumption for entire detection, ambient light lux reading, issuing commands / MQTT messages and log writes are some 115 milliseconds
 
 ### Custom MQTT message example:
 
@@ -104,7 +117,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
             )
 ```
 
-### Pin connection example between APDS9930 module board and a 7" Sunton 8048S070C device
+### Pin connection example between APDS-9930 module board and a 7" Sunton 8048S070C device
 
 | openHASP device | APDS-9930 Board | Function  |
 | --------------- | --------------- | --------- |
@@ -116,7 +129,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
 | NC              | INT             | Interrupt |
 
 > ***Note***
-> The APDS9930 library shares the global `Wire` object with the openHASP device touch controller using default I²C bus. This restricts the APDS9930 sensors SDA/SCL GPIO pins to be identical with the openHASP device defined touch controller GPIO pins ! On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is not connnected nor used in this Custom Code
+> The APDS-9930 library shares the global `Wire` object with the openHASP device touch controller using default I²C bus. This restricts the APDS-9930 sensors SDA/SCL GPIO pins to be identical with the openHASP device defined touch controller GPIO pins ! On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is not connnected nor used in this Custom Code
 
 
 ### Config keywords:
