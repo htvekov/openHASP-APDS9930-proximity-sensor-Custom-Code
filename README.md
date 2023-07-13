@@ -74,6 +74,7 @@ data:
 When proximity is registered above defined threshold value, an `idle_off` command is instantly fired internally in the openHASP code (wake up device). This is followed by a `backlight={'state':1,'brightness':xx}` command, where brightness value is set to either `brightness_low` or `brightness_high`,  depending on what ambient light lux level has been read upon proximity detection
 
 > ***Note***
+> 
 > When using openHASP Home Assistant Custom Component, the `idle_off` command will also trigger a state and brightness command from the CC. As the brightness level from CC is fixed, this will unfortunately instantly owerwrite any brightness setting done in custom code. So until this gets fixed in the CC, a hack is needed in openHASP Custom Components `lights.py` file in order to ignore actions on `idle_off` commands for specific openHASP devices
 
 ### Hack example - openHASP Custom Component `lights.py` file:
@@ -129,8 +130,12 @@ When proximity is registered above defined threshold value, an `idle_off` comman
 | NC              | INT             | Interrupt |
 
 > ***Note***
-> The APDS-9930 library shares the global `Wire` object with the openHASP device touch controller using default I²C bus. This restricts the APDS-9930 sensors SDA/SCL GPIO pins to be *identical* with the openHASP device defined touch controller GPIO pins ! On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is *not* connected nor used in this Custom Code. IMPORTANT: The APDS-9930 sensor is *not* 5V tolerant - Connect to 3.3V only !!
+> 
+> The APDS-9930 library shares the global `Wire` object with the openHASP device touch controller using default I²C bus. This restricts the APDS-9930 sensors SDA/SCL GPIO pins to be *identical* with the openHASP device > defined touch controller GPIO pins ! On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is *not* connected nor used in this Custom Code.
 
+> ***Warning***
+> 
+> The APDS-9930 sensor is *not* 5V tolerant - Connect to 3.3V only !!
 
 ### Config keywords:
 
