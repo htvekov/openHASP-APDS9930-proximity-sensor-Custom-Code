@@ -142,7 +142,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
 - Add git+https://github.com/depau/APDS9930.git to lib-deps in `platformio.ini` file
 - Copy `my_custom.h` and `my_custom.ccp` files to openhasp/src/custom folder
 - Revise `platformio_override.ini` and `user_config_override.h` files
-- Patch openHASP Custom Config `lights.py` file in Home Assistant or copy file from this repo instead
+- Patch openHASP Custom Config `light.py` file in Home Assistant or copy file from this repo instead
 
 Suggestions, improvements, error reporting etc. are very welcome ! 🙂
 
