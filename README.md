@@ -21,7 +21,7 @@ The APDS-9930 Digital Proximity and Ambient Light Sensor is a cheap, realiable a
 # openHASP Custom Code for [APDS-9930 proximity sensor](https://www.aliexpress.com/item/32846656029.html)
 
 - Custom code for issuing `idle_off` command locally in openHASP code upon proximity detection
-- Supports custom brightness level (low or high) depending on APDS-9930 sensors ambient light lux value. This feature will make it possible to wake up the openHASP device, upon proximity detection at night, at low brightness level
+- Supports custom brightness level (low or high) depending on APDS-9930 sensors ambient light lux value. This feature will make it possible to wake up the openHASP device at low brightness level upon proximity detection at night
 - Custom brightness- and ambient light threshold levels are configurable at runtime via MQTT commands
 - All proximity detection events, distance value and ambient light lux level are written to log and published via MQTT custom topic. Typical time consumption for entire detection, ambient light lux reading, issuing commands / MQTT messages and log writes are some 115 milliseconds
 
@@ -131,7 +131,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
 
 > ***Note***
 > 
-> The APDS-9930 library shares the global `Wire` object with the openHASP device touch controller using default I²C bus. This restricts the APDS-9930 sensors SDA/SCL GPIO pins to be *identical* with the openHASP device > defined touch controller GPIO pins ! On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is *not* connected nor used in this Custom Code.
+> The APDS-9930 library shares the global `Wire` object with the openHASP device touch controller using default I²C bus. This restricts the APDS-9930 sensors SDA/SCL GPIO pins to be *identical* with the openHASP device defined touch controller GPIO pins ! On the 5- and 7" Sunton devices all needed pins are easily accessible via the P3 and P4 JST connectors. Interrupt pin (INT) is *not* connected nor used in this Custom Code.
 
 > ***Warning***
 > 
