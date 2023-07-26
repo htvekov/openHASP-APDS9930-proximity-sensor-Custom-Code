@@ -48,7 +48,7 @@ ambient light lux level has been read upon proximity detection
 
 When using openHASP Home Assistant Custom Component, the idle_off command will also trigger a state and brightness commmand from the CC
 As the brightness level from CC is fixed, this will unfortunately instantly owerwrite any brightness setting done in custom code
-So until this gets fixed in the CC, a hack is needed in openHASP Custom Components lights.py file in order to ignore actions on idle_off commands for specific openHASP devices
+So until this gets fixed in the CC, a hack is needed in openHASP Custom Components light.py file in order to ignore actions on idle_off commands for specific openHASP devices
 
    async def async_listen_idleness(self):
         """Listen to messages on MQTT for HASP idleness."""
