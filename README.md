@@ -77,7 +77,7 @@ When proximity is registered above defined threshold value, an `idle_off` comman
 > 
 > When using openHASP Home Assistant Custom Component, the `idle_off` command will also trigger a state and brightness command from the CC. As the brightness level from CC is fixed, this will unfortunately instantly owerwrite any brightness setting done in custom code. So until this gets fixed in the CC, a hack is needed in openHASP Custom Components `lights.py` file in order to ignore actions on `idle_off` commands for specific openHASP devices
 
-### Hack example - openHASP Custom Component `lights.py` file:
+### Hack example - openHASP Custom Component `light.py` file:
 
 ```python
    async def async_listen_idleness(self):
